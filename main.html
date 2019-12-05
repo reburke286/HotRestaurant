@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Stefon's</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>The hottest restaurant in LA is:</h1>
+        <h3>Stefon's!</h3>
+        <hr />
+        <a href="/api/reservation"
+          ><button class="btn btn-danger btn-lg">
+            <span class="fa fa-calendar"></span> Make Reservation
+          </button></a
+        >
+        <a href="/api/tables"
+          ><button class="btn btn-success btn-lg">
+            <span class="fa fa-eye"></span> View Tables
+          </button></a
+        >
+        <ion-icon name="book"></ion-icon>
+      </div>
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <h4 id="booked">Booked Tables</h4>
+                  <hr>
+                  <h4 id="waitlist">Waitlist</h4>
+              </div>
+          </div>
+      </div>
+    
+
+    <script type="text/javascript">
+    $.get('/api/tables', function(data) {
+        if(data) {
+            const name = $("<p>" + data.name + "</p>");
+            $("#booked").append(name);
+        }
+
+    })
+    </script>
+  </body>
+</html>
