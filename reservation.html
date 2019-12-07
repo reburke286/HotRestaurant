@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reservations</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1 style="text-align: center">Hot Resteraunt</h1>
+            <hr>
+            <h3 style="text-align: center">Make your reservation</h3>
+            <a href=""><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span>View Tables</button></a>
+            <a href="/"><button class="btn btn-primary btn-lg"><span class="fas fa-home"></span></button></a>
+            
+        </div>
+        <div class="row">
+
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3><strong>Table Reservations</strong></h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" role="form">
+
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PhoneNumber">Phone Number</label>
+                                <input type="text" class="form-control" id="phoneNum">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="uniqueId">Unique ID</label>
+                                <input type="text" class="form-control" id="uniqueId">
+                            </div>
+
+                        </form>
+                        <br>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span
+                                    class="fa fa-fire"></span> Submit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //Create a new object fromt the data submitted
+        $("#add-btn").on("click", function (event) {
+            event.preventDefault();
+            const newRes = {
+                name: $("#name").val().trim(),
+                PhoneNumber: $("#phoneNum").val().trim(),
+                Email: $("#email").val().trim(),
+                id: $("#uniqueId").val().trim()
+            };
+            //recieve data from the user when info is submit
+            $.post("/reservations", newRes)
+                .then(function (data) {
+                    console.log("res.html", data);
+                    alert("adding you to the list");
+            });
+        })
+    </script>
+</body>
+
+</html>
